@@ -1,6 +1,6 @@
 opencv-python
 mediapipe
-pandas 
+pandas
 cvzone
 numpy
--U scikit-learn   
+scikit-learn

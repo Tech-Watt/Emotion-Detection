@@ -1,86 +1,106 @@
-Facial Emotion Detection using Face Mesh and Machine Learning
-Project Overview
-This project involves creating a facial emotion detection system using face mesh points captured via a webcam or video, combined with a machine learning model. The project generates face data (x, y coordinates of facial landmarks) using OpenCV and cvzone, stores it in a CSV file, trains a machine learning model to classify emotions, and uses the trained model to predict emotions from live video feed.
+# Facial Emotion Detection
 
-The project consists of three major components:
+A computer vision project that detects facial emotions from webcam input by extracting facial landmarks and classifying them with a machine learning model.
 
-Data Generation: Captures face mesh landmarks and stores them with emotion labels.
-Model Training: Trains a machine learning model (Logistic Regression) on the face mesh data.
-Emotion Prediction: Uses the trained model to classify the emotion in real-time based on face mesh data.
+## Why this project stands out
+This project demonstrates a full end-to-end machine learning workflow:
+- collecting structured facial data,
+- training a classification model,
+- and deploying it in a live real-time demo.
 
-Table of Contents
-Installation
-Project Structure
-How It Works
-Usage
-Customization
-Dependencies
-License
-Installation
+It is a strong example of applied Python, OpenCV, and scikit-learn skills for roles in AI, computer vision, and data science.
 
-Clone the Repository
-Open your terminal and run:
-git clone <repository_url>
-cd <repository_directory>
-Install Dependencies
-Make sure you have Python installed. Install the required packages using:
+## Key features
+- Real-time face mesh landmark extraction
+- Emotion data collection from webcam input
+- Training pipeline for a supervised classifier
+- Live demo for instant emotion prediction
+- Clean, modular project structure for easier extension
+
+## Tech stack
+- Python
+- OpenCV
+- cvzone
+- NumPy
+- pandas
+- scikit-learn
+
+## Project structure
+```text
+Emotion-Detection/
+├── data/
+│   └── data.csv
+├── models/
+│   └── model.pkl
+├── scripts/
+│   ├── common.py
+│   ├── generate_data.py
+│   ├── train_model.py
+│   └── live_demo.py
+├── datagen.py
+├── training.py
+├── test.py
+├── requirements.txt
+└── README.md
+```
+
+## Getting started
+
+### 1. Clone the repository
+```bash
+git clone <your-repository-url>
+cd Emotion-Detection
+```
+
+### 2. Create a virtual environment
+```bash
+python -m venv .venv
+source .venv/bin/activate   # macOS/Linux
+.venv\Scripts\activate      # Windows
+```
+
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
-Project Structure
+```
 
-├── data.csv                   # CSV file for storing face mesh data with emotion labels
-├── datagen.py                 # Script to generate and save face data
-├── model.pkl                  # Pre-trained machine learning model (Logistic Regression)
-├── requirements.txt           # List of project dependencies
-├── test.py                    # Script to predict emotions using the trained model
-└── training.py                # Script for training the model on face data
+## How the project works
+1. Data collection
+   - Run the data collection script to capture facial landmarks and label them.
+2. Model training
+   - Train a classifier on the collected dataset.
+3. Live prediction
+   - Run the demo to classify emotions from a webcam stream.
 
-How It Works
-1. Data Generation (datagen.py)
-This script uses a webcam or video input to capture face mesh points (468 points per frame) using cvzone.FaceMeshModule.
-It flattens these points and saves them in a CSV file (data.csv) along with the emotion label (e.g., 'happy', 'sad').
+## Usage
 
-The key facial landmarks (x, y coordinates) are extracted for each frame.
-The emotion label is inserted manually into the script and saved with the data.
-2. Model Training (training.py)
-This script loads the captured face mesh data from data.csv and trains a Logistic Regression model on the data to classify emotions. It uses a pipeline with standard scaling and logistic regression. The trained model is then saved as model.pkl.
-
-The dataset is split into features (landmark points) and labels (emotion classes).
-A pipeline is created with StandardScaler and LogisticRegression.
-The trained model is evaluated and saved for later use.
-3. Emotion Prediction (test.py)
-This script uses the trained model (model.pkl) to predict emotions in real-time from the webcam feed. It captures face mesh points in each frame, feeds them into the model, and displays the predicted emotion on the video.
-
-Real-time prediction using the trained machine learning model.
-The live video feed is processed frame by frame to detect face mesh points.
-The predicted emotion is overlaid on the video.
-Usage
-Step 1: Data Generation
-Run the datagen.py script to capture and store face mesh data. The data is stored in data.csv with the class label for each frame.
-
-
+### Collect data
+```bash
 python datagen.py
-Step 2: Model Training
-Train the model using the captured data by running the training.py script. The trained model will be saved as model.pkl.
+```
 
-
+### Train the model
+```bash
 python training.py
-Step 3: Emotion Prediction
-Run the test.py script to start real-time emotion prediction using your webcam.
+```
+
+### Run the live demo
+```bash
 python test.py
+```
 
-Customization
-Adding New Emotions: To train the model on additional emotions, modify the class_name in datagen.py to the desired emotion and capture new data.
-Model Parameters: You can replace the Logistic Regression model with other classifiers (e.g., SVM or Random Forest) by modifying the training.py script.
-Video Input: Change the cap = cv2.VideoCapture(1) in datagen.py and test.py to cap = cv2.VideoCapture('video.mp4') if you want to use a video file instead of live webcam input.
+## What I learned from building this project
+- Working with computer vision pipelines
+- Preparing structured data for machine learning
+- Building a practical ML demo from scratch
+- Organizing a project for readability and maintainability
 
-Dependencies
-cvzone: For face mesh detection and easy text overlay.
-OpenCV: For video processing and capturing frames from the webcam.
-NumPy: For handling numerical operations.
-Scikit-learn: For machine learning algorithms and data preprocessing.
-To install the dependencies, simply run:
-pip install -r requirements.txt
+## Future improvements
+- Add more emotion classes
+- Improve model accuracy with more diverse data
+- Experiment with deep learning models
+- Add a GUI or web interface
 
-License
-This project is licensed under the MIT License. You are free to use, modify, and distribute this project.
+## License
+This project is intended for educational and portfolio purposes.
 
